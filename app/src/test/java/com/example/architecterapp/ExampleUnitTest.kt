@@ -20,4 +20,27 @@ class ExampleUnitTest {
         var myComponent: MyComponent = DaggerMyComponent.create()
         System.out.println("result: "+myComponent.getString())
     }
+
+    @Test
+    fun testMemberInjection(){
+        var myClass = MyClass()
+        var str = myClass.str
+        assertNotNull("조회 결과 null", str)
+        var myComponent = DaggerMyComponent.create()
+        myComponent.inject(myClass)
+        str = myClass.str
+        assertEquals("Hello World", str)
+    }
+
+    @Test
+    fun testMemberInjector(){
+        var myClass = MyClass()
+        var str = myClass.str
+        System.out.println("result = "+str)
+        var myComponent =DaggerMyComponent.create()
+        var injector = myComponent.getInjector()
+        injector.injectMembers(myClass)
+        str = myClass.str
+        System.out.println("result = "+str)
+    }
 }
