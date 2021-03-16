@@ -10,11 +10,11 @@ interface AppComponent {
     fun mainActivityComponentBuilder(): MainActivityComponent.Builder
     fun inject(app: App)
 
-    @Component.Factory
-    interface Factory{
-        fun create(
-            @BindsInstance app: App,
-            appModule: AppModule
-        )
+    @Component.Builder
+    interface Builder{
+        fun setModule(module: AppModule): Builder
+        @BindsInstance
+        fun setApp(app: App): Builder
+        fun build(): AppComponent
     }
 }
