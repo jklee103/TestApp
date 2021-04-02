@@ -11,28 +11,6 @@ import android.view.ViewGroup
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
-
-    @Inject
-    lateinit var activityName:String
-
-    @Inject
-    lateinit var randomNumber: Integer
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if(activity is MainActivity){
-            (activity as MainActivity).getComponent()
-                .mainFragmentComponentBuilder()
-                .setModule(MainFragmentModule())
-                .setFragment(this)
-                .build()
-                .inject(this)
-        }
-        Log.e("mainfragment",activityName)
-        Log.e("mainfragment", "random num = $randomNumber")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
